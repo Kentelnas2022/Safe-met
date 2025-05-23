@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import Loading from './components/Loading';
 import Profile from './components/Profile';
 import Emergency from './components/Emergency';
+import ProtectedRoute from './components/ProtectedRoute';
 import './style.css';
 
 function App() {
@@ -14,10 +15,33 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/loading" element={<Loading />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/emergency" element={<Emergency />} />
+
+        {/* 🔒 Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/emergency"
+          element={
+            <ProtectedRoute>
+              <Emergency />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
